@@ -1,0 +1,97 @@
+<% layout("./layouts/layout.eta") %>
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+
+
+<h4> <%= it.question.question_text %> </h4>
+
+  <div class="row" style="
+    position: center;
+  ">
+    <div class="col s12 m6">
+      <div class="card " style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title"></span>
+          <h6>
+            <% if (it.answers[0]) { %>
+              <table>
+              <tr>
+                  <th>Answer</th>
+                  <th>True/False</th>
+                  <th> </th>
+              </tr>
+
+              <% it.answers.forEach((answer) => {%>
+
+              <tr>
+                  <td> <%= answer.option_text %> </td>  
+                  <td> <%= answer.is_correct %>  </td>
+                  <td> <form method="POST" action="/topics/<%= it.question.topic_id %>/questions/<%= it.question.id %>/options/<%= answer.id %>/delete"> <input type="submit" value="Delete option"> </form> </td>
+              </tr>
+              <% }); %>
+
+              </table>
+
+            <% } else { %>
+                <p> No answer options! </p>
+                <form method="POST" action="/topics/<%= it.question.topic_id %>/questions/<%= it.question.id%>/delete"> <input type="submit" value="Delete question"> </form>
+                <% } %>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="
+    position: center;
+  ">
+    <div class="col s12 m6">
+      <div class="card " style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Add an answer</span>
+          <h6>
+
+            <% if (it.errorData.validationErrors && it.errorData.validationErrors.length > 0) { %>
+              <ul>
+                  <% it.errorData.validationErrors.forEach((error) => { %>
+                      <li><%= error %></li>
+              <% }); %>
+              </ul>
+              <% } else { %>
+                <% } %>
+
+
+            <form method="POST" action="/topics/<%= it.question.topic_id %>/questions/<%= it.question.id %>/options">
+            <input type="text" style="background-color: #d5afba;" name="option_text" value="<%=it.errorData.invalidName%>"  /><br/>
+            
+            <label style= "
+            color: black"
+            >
+            <input id="indeterminate-checkbox" type="checkbox" name="is_correct"/>
+          <span>True</span>
+          </label>
+          <br>
+        <input type="submit" value="Add answer" />
+          </form>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+<br>
+<a href="/topics/<%= it.question.topic_id %>" style="color: blue"> Back to questions </a> <br>
+

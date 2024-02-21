@@ -1,0 +1,14 @@
+
+  <nav>
+    <div class="nav-wrapper" style="
+      background-color: #e27d5f;
+    ">
+      <a href="#" class="brand-logo right">Questions and Answers</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Main page</a></li>
+        <li><a href="/topics">Topics</a></li>
+        <li><a href="/quiz">Quiz</a></li>
+      </ul>
+    </div>
+  </nav>
+

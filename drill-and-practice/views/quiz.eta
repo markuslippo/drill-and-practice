@@ -1,0 +1,31 @@
+<% layout("./layouts/layout.eta") %>
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+
+<h4> Welcome to the Quiz! </h4>
+
+
+
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Available topics</span>
+          <h6>
+            <ul>    
+            <% it.topics.forEach((topic) => {%>
+                <li> <a href="/quiz/<%= topic.id %>" style="color: blue"> <%= topic.name %> </a> <br><br> </li>
+            <% }); %>
+            </ul>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,49 @@
+<% layout("./layouts/layout.eta") %>
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+
+<div class="row" style="
+    position: center;
+  ">
+    <div class="col s12 m6">
+      <div class="card " style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title"><% if (it.answers[0]) { %></span>
+          <h6>
+             <% if (it.question.id) { %>
+                    <h4> <%= it.question.question_text %> </h4>
+                  <table>
+                    <tr>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+
+            <% it.answers.forEach((answer) => {%>
+                <tr>
+         <td> <%= answer.option_text %> <form method="POST" action="/quiz/<%= it.question.topic_id %>/questions/<%= it.question.id %>/options/<%= answer.id %> "> <input type="submit" value="Choose"> </form> </td> 
+                <tr>
+            <% }); %>
+
+                  </table>
+                <% } else { %>
+                    <p> This topic does not have any working questions or answers. </p>
+                <% } %>
+          <% } else { %>
+            This topic does not have any working questions or answers. <br>
+            <a href="/quiz" style="color: blue"> Back to quiz </a> <br>
+          <% } %>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

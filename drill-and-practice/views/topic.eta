@@ -1,0 +1,135 @@
+<% layout("./layouts/layout.eta") %>
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+<h4><%= it.topic.name %> </h4>
+
+
+<% if (it.admin) { %>
+   
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Add a question</span>
+          <h6>
+
+        <% if (it.errorData.validationErrors && it.errorData.validationErrors.length > 0) { %>
+              <ul>
+              <% it.errorData.validationErrors.forEach((error) => { %>
+              <li><%= error %></li>
+              <% }); %>
+              </ul>
+              <% } else { %>
+              <% } %>
+
+          <form method="POST" action="/topics/<%= it.topic.id %>/questions">
+          <input type="text" value="<%= it.errorData.invalidName %>" style="background-color: #d5afba;" name="question_text"/>
+          <input type="submit" value="Add question!" />
+          </form> 
+
+
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Questions</span>
+          <h6>
+            <% if (it.questions[0]) { %>
+              <ul>
+                <% it.questions.forEach((question) => {%>
+                  <li> <a href="/topics/<%= it.topic.id %>/questions/<%= question.id %>" style="color: blue"> <%= question.question_text %> </a> <br> </li>
+                
+        <% }); %>
+        </ul>
+
+            <% } else { %>
+            <p> No questions in this topic </p>
+            <% } %>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+
+
+
+
+
+<% } else { %>
+
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Add a question</span>
+          <h6>
+          <form method="POST" action="/topics/<%= it.topic.id %>/questions">
+          <input type="text" style="background-color: #d5afba;" name="question_text"/>
+          <input type="submit" value="Add question!" />
+          </form> 
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Questions</span>
+          <h6>
+            <% if (it.questions[0]) { %>
+              <ul>
+                <% it.questions.forEach((question) => {%>
+                  <li> <a href="/topics/<%= it.topic.id %>/questions/<%= question.id %>" style="color: blue"> <%= question.question_text %> </a> <br> </li>
+              
+        <% }); %>
+        </ul>
+
+<% } else { %>
+    <p> No questions in this topic </p>
+<% } %>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+
+  
+<% } %>
+
+
+
+
+
+
+

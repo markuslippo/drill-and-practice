@@ -1,0 +1,62 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+<br>
+<h4>Welcome!</h4>
+<h6> This is my Web Software Development Project II. </h6> 
+<h6>This application provides a list of topics and allows creating multiple-choice questions into those topics that can then 
+be answered by me and others. <br> <br>
+Only an admin can add and remove topics. To view topics and the quiz you need to be registered and logged in.
+However, anyone can use the provided API at /api. <br> <br>
+
+The email and password for the admin account can be found from "readme.txt".</h6>
+<br>
+<br>
+
+    <div class="row" style="
+    position: center;
+  ">
+    <div class="col s12 m6">
+      <div class="card " style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Statistics</span>
+          <h6>
+            <a href="/auth/register" style="color: blue"> Registration </a> <br>
+            <a href="/auth/login" style="color: blue"> Login </a> <br>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="
+    position: center;
+  ">
+    <div class="col s12 m6">
+      <div class="card " style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Statistics</span>
+          <h6>
+            Amount of topics: <%= it.amount_of_topics %> <br>
+            Amount of questions: <%= it.amount_of_questions %> <br>
+            Amount of answers from users: <%= it.amount_of_question_answers %> <br>
+           
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

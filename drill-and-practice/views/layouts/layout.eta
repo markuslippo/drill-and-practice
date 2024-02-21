@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project 2!</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  </head>
+  <body style="background-color: #7dc2ad;">
+  <div class="container" style="
+    background-color: #7dc2ad;
+    position: absolute;
+    margin-left: 20%;
+    bottom: 0;
+    top: 0;
+    border-radius: 30px;
+">
+    <%~ includeFile("./partials/navigation.eta") %>
+    <%~ it.body %>
+  </div>
+  </body>
+</html>

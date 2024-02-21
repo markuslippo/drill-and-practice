@@ -1,0 +1,26 @@
+<% layout("./layouts/layout.eta") %>
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+
+<div class="row" style="
+    position: center;
+  ">
+    <div class="col s12 m6">
+      <div class="card " style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Correct</span>
+          <h6>
+            <a href="/quiz/<%= it.id %>" style="color: blue"> Next question </a> <br>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+

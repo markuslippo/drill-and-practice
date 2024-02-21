@@ -1,0 +1,44 @@
+<% layout("./layouts/layout.eta") %>
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+
+  <div class="row" style="
+    position: center;
+  ">
+    <div class="col s12 m6">
+      <div class="card " style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Login form</span>
+          <h6>
+
+
+            <% if (it.validationErrors && it.validationErrors.length > 0) { %>
+              <ul>
+              <% it.validationErrors.forEach((error) => { %>
+                <li><%= error %></li>
+                <% }); %>
+                </ul>
+                <% } else { %>
+                <% } %>
+
+           <form method="POST" action="/auth/login">
+            Email:<br/>
+            <input type="email"style="background-color: #d5afba;" name="email" value="<%= it.invalidEmail%>"/><br/>
+            Password:<br/>
+            <input type="password"style="background-color: #d5afba;" name="password"/><br/>
+            <input type="submit" value="Login" />
+            </form> 
+            <br>
+            <a href="/auth/register" style="color: blue">Register</a> <br>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>

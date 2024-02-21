@@ -1,0 +1,103 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.admin) { %>
+   In admin mode 
+<% } else { %>
+   Not in admin mode
+<% } %>
+
+
+
+<% if (it.admin) { %>
+<h4> Edit the topics here: </h4>
+<br>
+
+   <div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">Create a new topic:</span>
+          <h6>
+
+            <% if (it.errorData.validationErrors && it.errorData.validationErrors.length > 0) { %>
+              <ul>
+              <% it.errorData.validationErrors.forEach((error) => { %>
+              <li><%= error %></li>
+              <% }); %>
+              </ul>
+              <% } else { %>
+              <% } %>
+
+            <form method="POST" action="/topics"><input type="text" style="background-color: #d5afba;"name="name" value="<%=it.errorData.invalidName %>" /><input type="submit" value="Create topic!"/> </form> 
+
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">List of available topics:</span>
+          <h6>
+            <table>
+            <tr>  
+                  <th> </th>
+                  <th> </th>
+
+            </tr>
+                <% it.topics.forEach((topic) => {%>
+            <tr>
+                <td> <a href="/topics/<%= topic.id %>" style="color:blue"> <%= topic.name %> </a> </form>  </td>
+                <td><form method="POST" action="/topics/<%= topic.id %>/delete"> <input type="submit" value="Delete topic"> </form> </td>
+            </tr>
+              
+          <% }); %>
+            </table>
+              
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% } else { %>
+
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card" style ="
+        background-color: #c38d9d;
+        border-radius: 10px;
+      ">
+        <div class="card-content black-text">
+          <span class="card-title">List of available topics:</span>
+          <h6>
+            <ul>  
+                <% it.topics.forEach((topic) => {%>
+              
+                <li> <a href="/topics/<%= topic.id %>" style="color:blue"> <%= topic.name %> </a> </form>  </li>
+                <br>
+              
+          <% }); %>
+            </ul>
+              
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<% } %>
+
+
+
